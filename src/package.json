@@ -19,4 +19,5 @@
     "build": "webpack",
     "watch": "webpack -w"
   }
+  
 }
