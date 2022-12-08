@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# A Note taking React App with local caching.
+
+The Deployed Link https://react-sgewec.stackblitz.io/ 
+Don't forget to Run this project on SBllitz 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
