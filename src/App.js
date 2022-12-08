@@ -6,10 +6,6 @@ import Split from "react-split"
 import {nanoid} from "nanoid"
 
 export default function App() {
-    /**
-     * Challenge: When the user edits a note, reposition
-     * it in the list of notes to the top of the list
-     */
     const [notes, setNotes] = React.useState(
         () => JSON.parse(localStorage.getItem("notes")) || []
     )
@@ -31,6 +27,7 @@ export default function App() {
     }
     
     function updateNote(text) {
+        // Put the most recently-modified note at the top
         setNotes(oldNotes => {
             const newArray = []
             for(let i = 0; i < oldNotes.length; i++) {
@@ -43,13 +40,23 @@ export default function App() {
             }
             return newArray
         })
-        
-        // This does not rearrange the notes
-        // setNotes(oldNotes => oldNotes.map(oldNote => {
-        //     return oldNote.id === currentNoteId
-        //         ? { ...oldNote, body: text }
-        //         : oldNote
-        // }))
+    }
+    
+    /**
+     * Challenge: complete and implement the deleteNote function
+     * 
+     * Hints: 
+     * 1. What array method can be used to return a new
+     *    array that has filtered out an item based 
+     *    on a condition?
+     * 2. Notice the parameters being based to the function
+     *    and think about how both of those parameters
+     *    can be passed in during the onClick event handler
+     */
+    
+    function deleteNote(event, noteId) {
+        event.stopPropagation()
+        setNotes(oldNotes => oldNotes.filter(note => note.id !== noteId))
     }
     
     function findCurrentNote() {
@@ -73,6 +80,7 @@ export default function App() {
                     currentNote={findCurrentNote()}
                     setCurrentNoteId={setCurrentNoteId}
                     newNote={createNewNote}
+                    deleteNote={deleteNote}
                 />
                 {
                     currentNoteId && 
